@@ -21,6 +21,8 @@ ATank* ATankAIController::GetPlayerTank() const
 
 void ATankAIController::BeginPlay()
 {
+	Super::BeginPlay();
+
 	ATank* PlayerTank = GetPlayerTank();
 	if (!PlayerTank)
 	{
@@ -32,4 +34,14 @@ void ATankAIController::BeginPlay()
 	}
 
 	// UE_LOG(LogTemp, Warning, TEXT("PlayerController : %s."), *PlayerTank->GetName());
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	//UE_LOG(LogTemp, Warning, TEXT("AI controller tick working!"));
+
+	if (GetPlayerTank()) {
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	}
 }

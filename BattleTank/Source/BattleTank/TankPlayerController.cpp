@@ -2,6 +2,7 @@
 
 
 #include "TankPlayerController.h"
+#include "DrawDebugHelpers.h"
 
 
 void ATankPlayerController::BeginPlay()
@@ -43,7 +44,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if (GetSightRayHitLocation(HitLocation)) 
 	{
 
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *HitLocation.ToString());
+		GetControlledTank()->AimAt(HitLocation);
 
 
 	}
@@ -82,6 +83,9 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 	FHitResult HitResult;
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();
 	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
+
+	//DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor(255, 0, 0), false, 5.f, ECC_WorldStatic, 1.f);
+
 	if (GetWorld()->LineTraceSingleByChannel(
 			HitResult,
 			StartLocation,
