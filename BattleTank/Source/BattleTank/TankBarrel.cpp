@@ -17,4 +17,6 @@ void UTankBarrel::Elevate(float RelativeSpeed)
 
 	SetRelativeRotation(FRotator(RawNewElevation, 0, 0));
 
+	UE_LOG(LogTemp, Warning, TEXT("Barrel Elevate is being called"));
+
 }
