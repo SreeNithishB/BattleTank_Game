@@ -15,8 +15,17 @@ void UTankMovementComponent::Initialize(UTankTrackNew* LeftTrackToSet, UTankTrac
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	//auto Time = GetWorld()->GetTimeSeconds();
-	UE_LOG(LogTemp, Warning, TEXT("Intend Move Forward Throw: %f"), Throw);
+	// UE_LOG(LogTemp, Warning, TEXT("Intend Move Forward Throw: %f"), Throw);
 
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
+}
+
+void UTankMovementComponent::IntendTurnRight(float Throw)
+{
+	//auto Time = GetWorld()->GetTimeSeconds();
+	// UE_LOG(LogTemp, Warning, TEXT("Intend Move Forward Throw: %f"), Throw);
+
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
 }
