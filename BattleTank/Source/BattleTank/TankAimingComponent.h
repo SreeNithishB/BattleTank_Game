@@ -35,7 +35,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringState FiringState = EFiringState::Reloading;
+	EFiringState FiringState = EFiringState::Locked;
 
 public:	
 	// Called every frame
