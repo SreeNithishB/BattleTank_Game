@@ -54,7 +54,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector HitLocation)
 {
 	
 	if (!Barrel) { return; }
@@ -99,7 +99,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 
 	if (!Barrel || !Turret) { return; }
-	UE_LOG(LogTemp, Warning, TEXT("I'm here"))
 
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
