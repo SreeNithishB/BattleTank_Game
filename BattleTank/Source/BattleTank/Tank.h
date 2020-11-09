@@ -21,8 +21,8 @@ public:
 	ATank();
 
 
-	UFUNCTION(BlueprintCallable, Category = Firing)
-	void Fire();
+	//UFUNCTION(BlueprintCallable, Category = Firing)
+	//void Fire();
 
 	//UFUNCTION(BlueprintCallable, Category = Setup)
 	//void SetBarrelReference(UTankBarrel* BarrelToSet);
@@ -49,19 +49,19 @@ public:
 	// Called to bind functionality to input
 	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000;
+	//UPROPERTY(EditAnywhere, Category = Firing)
+	//float LaunchSpeed = 100000;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
+	//UPROPERTY(EditAnywhere, Category = Setup)
+	//TSubclassOf<AProjectile> ProjectileBlueprint;
 
 private:
 	// Local barrel reference for spawning projectile
-	UTankBarrel* Barrel = nullptr;
+	//UTankBarrel* Barrel = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ReloadTimeInSeconds = 3;
+	//UPROPERTY(EditDefaultsOnly, Category = Firing)
+	//float ReloadTimeInSeconds = 3;
 
-	double LastFireTime = 0;
+	//double LastFireTime = 0;
 
 };
