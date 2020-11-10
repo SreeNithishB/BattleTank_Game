@@ -27,23 +27,13 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-//void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
-//{
-//	Barrel = BarrelToSet;
-//}
-//
-//void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
-//{
-//	Turret = TurretToSet;
-//}
 
 // Called when the game starts
 void UTankAimingComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	LastFireTime = FPlatformTime::Seconds();
 }
 
 
@@ -52,7 +42,10 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if ((FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds)
+	{
+		FiringState = EFiringState::Reloading;
+	}
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation)
@@ -86,13 +79,6 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 		auto Time = GetWorld()->GetTimeSeconds();
 		//UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solutin Found."), Time);
 	} 
-	//else
-	//{
-	//	auto Time = GetWorld()->GetTimeSeconds();
-	//	UE_LOG(LogTemp, Warning, TEXT("%f: No Aim Solution Found. (Not Found)"), Time);
-	//}
-
-
 
 }
 
@@ -116,8 +102,7 @@ void UTankAimingComponent::Fire()
 
 	if (!Barrel && !ProjectileBlueprint) { return; }
 
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-	if (isReloaded)
+	if (FiringState != EFiringState::Reloading)
 	{
 
 		//spawn a projectile at the socket location of the barrel
