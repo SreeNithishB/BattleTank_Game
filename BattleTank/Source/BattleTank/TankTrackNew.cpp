@@ -8,6 +8,19 @@ UTankTrackNew::UTankTrackNew()
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
+void UTankTrackNew::BeginPlay()
+{
+	Super::BeginPlay();
+
+	OnComponentHit.AddDynamic(this, &UTankTrackNew::OnHit);
+
+}
+
+void UTankTrackNew::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	UE_LOG(LogTemp, Warning, TEXT("I'm hit, I'm hit!"))
+}
+
 void UTankTrackNew::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
