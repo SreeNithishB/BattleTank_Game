@@ -3,6 +3,20 @@
 
 #include "TankTrackNew.h"
 
+UTankTrackNew::UTankTrackNew()
+{
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+void UTankTrackNew::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	UE_LOG(LogTemp, Warning, TEXT("Track Ticking"))
+
+}
+
+
 void UTankTrackNew::SetThrottle(float Throttle)
 {
 	//auto Name = GetName();
