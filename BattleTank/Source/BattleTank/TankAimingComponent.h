@@ -38,6 +38,12 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
 
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -51,6 +57,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Firing)
 	void Fire();
 
+	EFiringState GetFiringState() const;
+
 
 
 private:
@@ -62,12 +70,6 @@ private:
 	UTankTurret* Turret = nullptr;
 
 	FVector AimDirection;
-
-	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000;
-
-	UPROPERTY(EditAnywhere, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float ReloadTimeInSeconds = 3;
