@@ -20,6 +20,10 @@ AProjectile::AProjectile()
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launch Blast"));
 	LaunchBlast->AttachTo(CollisionMesh);
 
+	ImpactBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Impact Blast"));
+	ImpactBlast->AttachTo(CollisionMesh);
+	ImpactBlast->bAutoActivate = false;
+
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
 	ProjectileMovement->bAutoActivate = false;
 
