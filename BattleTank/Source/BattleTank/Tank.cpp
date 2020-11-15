@@ -23,6 +23,7 @@ float ATank::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, ACo
 
 	if (CurrentHealth <= 0)
 	{
+		onDeath.Broadcast();
 		UE_LOG(LogTemp, Warning, TEXT("Tank Died."))
 	}
 
@@ -35,7 +36,7 @@ float ATank::GetHealthPercent() const
 }
 
 
-// Called when the game starts or when spawned
+// Called when the game starts or when spawnedw
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();

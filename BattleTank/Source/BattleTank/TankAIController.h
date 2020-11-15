@@ -23,10 +23,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn* InPawn) override;
+
 protected:
 	//How close can the AI tank get
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float AcceptanceRadius = 3000;
 
-	
+	UFUNCTION()
+	void OnPossessedTankDeath();
 };

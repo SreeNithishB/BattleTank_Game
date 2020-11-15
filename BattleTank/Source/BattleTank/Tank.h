@@ -11,6 +11,8 @@ class UTankTurret;
 class UTankAimingComponent;
 class AProjectile;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTankDelegate);
+
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -31,6 +33,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Health")
 	float GetHealthPercent() const;
+
+
+	FTankDelegate onDeath;
 
 protected:
 	// Called when the game starts or when spawned
