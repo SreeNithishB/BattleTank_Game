@@ -89,13 +89,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 	if (bHaveAimSolution)
 	{
 		AimDirection = OutLaunchVelocity.GetSafeNormal();
-		auto TankName = GetOwner()->GetName();
-	//	UE_LOG(LogTemp, Warning, TEXT("%s Aiming at at %s"), *TankName, *AimDirection.ToString());
 
 		MoveBarrelTowards(AimDirection);
 
 		auto Time = GetWorld()->GetTimeSeconds();
-		//UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solutin Found."), Time);
 	} 
 
 }
@@ -126,7 +123,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector Aim)
 void UTankAimingComponent::Fire()
 {
 
-	if (!Barrel && !ProjectileBlueprint) { return; }
+	if (!Barrel || !ProjectileBlueprint) { return; }
 
 	if (FiringState == EFiringState::Aiming || FiringState == EFiringState::Locked)
 	{
