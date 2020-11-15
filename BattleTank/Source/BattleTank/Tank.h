@@ -20,15 +20,14 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-
-	//UFUNCTION(BlueprintCallable, Category = Firing)
-	//void Fire();
-
-	//UFUNCTION(BlueprintCallable, Category = Setup)
-	//void SetBarrelReference(UTankBarrel* BarrelToSet);
-
-	//UFUNCTION(BlueprintCallable, Category = Setup)
-	//void SetTurretReference(UTankTurret* TurretToSet);
+	//called by the engine when actor is taking damage
+	virtual float TakeDamage
+	(
+		float DamageAmount,
+		struct FDamageEvent const& DamageEvent,
+		class AController* EventInstigator,
+		AActor* DamageCauser
+	) override;
 
 
 
@@ -36,32 +35,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	//UPROPERTY(BlueprintReadOnly)
-	//UTankAimingComponent* TankAimingComponent = nullptr; 
-
-	//UPROPERTY(BlueprintReadOnly)
-	//UTankMovementComponent* TankMovementComponent = nullptr;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	//virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	//UPROPERTY(EditAnywhere, Category = Firing)
-	//float LaunchSpeed = 100000;
-
-	//UPROPERTY(EditAnywhere, Category = Setup)
-	//TSubclassOf<AProjectile> ProjectileBlueprint;
 
 private:
-	// Local barrel reference for spawning projectile
-	//UTankBarrel* Barrel = nullptr;
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	int32 StartingHealth = 100;
 
-	//UPROPERTY(EditDefaultsOnly, Category = Firing)
-	//float ReloadTimeInSeconds = 3;
+	UPROPERTY(VisibleAnywhere, Category = "Health")
+	int32 CurrentHealth = StartingHealth;
 
-	//double LastFireTime = 0;
 
 };
