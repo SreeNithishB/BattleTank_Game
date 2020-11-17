@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Projectile.h"
 #include "TankAimingComponent.generated.h"
 
 
@@ -18,7 +19,6 @@ enum class EFiringState : uint8
 
 class UTankBarrel;
 class UTankTurret;
-class AProjectile;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
@@ -44,6 +44,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
+
 
 public:	
 	// Called every frame

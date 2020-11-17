@@ -14,6 +14,8 @@ void ATankPlayerController::BeginPlay()
 	if (!AimingComponent) { return; }
 		FoundAimingComponent(AimingComponent);
 
+	isPlayerDead = false;
+
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
@@ -108,4 +110,11 @@ void ATankPlayerController::OnPossessedTankDeath()
 	UE_LOG(LogTemp, Warning, TEXT("PLAYER TANK RECIEVED!"))
 
 	StartSpectatingOnly();
+
+	isPlayerDead = true;
+}
+
+bool ATankPlayerController::callDeathScreen(bool dead)
+{
+	return isPlayerDead;
 }

@@ -4,8 +4,10 @@
 #include "TankBarrel.h"
 #include "TankTurret.h"
 #include "Projectile.h"
+#include "UObject/ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
 
+class AProjectile_BP;
 
 void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
 {
@@ -23,6 +25,11 @@ UTankAimingComponent::UTankAimingComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+
+	static ConstructorHelpers::FClassFinder<AProjectile>
+		ProjectileBP(TEXT("Blueprint'/Game/Projectile/Projectile_BP.Projectile_BP_C'"));
+	ProjectileBlueprint = ProjectileBP.Class;
+
 }
 
 
@@ -63,7 +70,7 @@ bool UTankAimingComponent::IsBarrelMoving()
 	if (!ensure(Barrel)) { return false; }
 
 	auto BarrelForward = Barrel->GetForwardVector();
-	return !BarrelForward.Equals(AimDirection, 0.2);
+	return !BarrelForward.Equals(AimDirection, 0.01);
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation)

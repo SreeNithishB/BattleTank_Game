@@ -48,7 +48,12 @@ public:
 	UPROPERTY(EditAnywhere)
 	float LineTraceRange = 1000000;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void OnPossessedTankDeath();
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	bool callDeathScreen(bool dead);
+
+private:
+	bool isPlayerDead = false;
 };
