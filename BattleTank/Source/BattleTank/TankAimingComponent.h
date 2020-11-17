@@ -40,7 +40,7 @@ protected:
 	EFiringState FiringState = EFiringState::Reloading;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 4000;
+	float LaunchSpeed = 8000;
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
@@ -77,11 +77,11 @@ private:
 	FVector AimDirection;
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	float ReloadTimeInSeconds = 3;
+	float ReloadTimeInSeconds = 1.0;
 
 	double LastFireTime = 0;
 
 	UPROPERTY(EditDefaultsOnly, Category = Firing)
-	int32 RoundsLeft = 3;
+	int32 RoundsLeft = 200;
 
 };

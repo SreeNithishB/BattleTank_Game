@@ -26,6 +26,11 @@ UTankAimingComponent::UTankAimingComponent()
 
 	// ...
 
+	LaunchSpeed = 8000;
+	ReloadTimeInSeconds = 1.0;
+	RoundsLeft = 200;
+
+
 	static ConstructorHelpers::FClassFinder<AProjectile>
 		ProjectileBP(TEXT("Blueprint'/Game/Projectile/Projectile_BP.Projectile_BP_C'"));
 	ProjectileBlueprint = ProjectileBP.Class;
